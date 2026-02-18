@@ -14,50 +14,50 @@
 
   <!-- Linked status badge -->
   <rect x="16" y="42" width="248" height="24" fill="#0e3d14" rx="4"/>
-  <text x="140" y="58" fill="#4caf50" font-size="11" font-weight="700" text-anchor="middle">✓  Frame is linked</text>
+  <text x="140" y="58" fill="#4caf50" font-size="11" font-weight="700" text-anchor="middle">Frame is linked</text>
 
   <!-- Divider -->
   <line x1="0" y1="74" x2="280" y2="74" stroke="#3f3f3f" stroke-width="1"/>
 
-  <!-- SECTION: Source info ----------------------------------------------- -->
+  <!-- Source info: FILE label -->
   <text x="16" y="92" fill="#8a8a8a" font-size="9" font-weight="600" letter-spacing="0.5">FILE</text>
   <text x="16" y="106" fill="#e8e8e8" font-size="11">~/Documents/quarterly-data.xlsx</text>
 
+  <!-- Source info: SHEET label -->
   <text x="16" y="126" fill="#8a8a8a" font-size="9" font-weight="600" letter-spacing="0.5">SHEET</text>
   <text x="16" y="140" fill="#e8e8e8" font-size="11">Sheet1</text>
 
+  <!-- Source info: CELL label -->
   <text x="100" y="126" fill="#8a8a8a" font-size="9" font-weight="600" letter-spacing="0.5">CELL</text>
   <text x="100" y="140" fill="#e8e8e8" font-size="11">B3</text>
 
   <!-- Divider -->
   <line x1="16" y1="152" x2="264" y2="152" stroke="#3f3f3f" stroke-width="1"/>
 
-  <!-- SECTION: Current value --------------------------------------------- -->
+  <!-- Current value label -->
   <text x="16" y="170" fill="#8a8a8a" font-size="9" font-weight="600" letter-spacing="0.5">CURRENT VALUE</text>
   <text x="16" y="192" fill="#e8e8e8" font-size="22" font-weight="700">$52,750</text>
 
+  <!-- Last updated label -->
   <text x="16" y="212" fill="#8a8a8a" font-size="9" font-weight="600" letter-spacing="0.5">LAST UPDATED</text>
   <text x="16" y="226" fill="#8a8a8a" font-size="10">Feb 18, 2026 at 9:14 AM</text>
 
   <!-- Divider -->
   <line x1="0" y1="238" x2="280" y2="238" stroke="#3f3f3f" stroke-width="1"/>
 
-  <!-- SECTION: Actions ---------------------------------------------------- -->
-  <!-- Update Now (primary) -->
+  <!-- Update Now button -->
   <rect x="16" y="248" width="248" height="34" fill="#0078d4" rx="5"/>
   <text x="140" y="269" fill="#fff" font-size="12" font-weight="600" text-anchor="middle">Update Now</text>
 
-  <!-- Remove Link (ghost/secondary) -->
+  <!-- Remove Link button -->
   <rect x="16" y="290" width="248" height="34" fill="none" stroke="#555" stroke-width="1" rx="5"/>
   <text x="140" y="311" fill="#c0c0c0" font-size="12" text-anchor="middle">Remove Link</text>
 
   <!-- Divider -->
   <line x1="0" y1="334" x2="280" y2="334" stroke="#3f3f3f" stroke-width="1"/>
 
-  <!-- SECTION: Auto-update toggle ---------------------------------------- -->
+  <!-- Auto-update toggle row -->
   <text x="16" y="356" fill="#c0c0c0" font-size="11">Auto-update on document open</text>
-
-  <!-- Toggle pill (ON state) -->
   <rect x="228" y="344" width="38" height="20" fill="#0078d4" rx="10"/>
   <circle cx="256" cy="354" r="8" fill="#fff"/>
 </svg>

@@ -13,56 +13,50 @@
   <text x="144" y="21" fill="#e8e8e8" font-size="12" font-weight="600" text-anchor="middle">DataLink</text>
 
   <!-- Status -->
-  <text x="16" y="54" fill="#8a8a8a" font-size="10">Frame selected · not linked</text>
+  <text x="16" y="54" fill="#8a8a8a" font-size="10">Frame selected - not linked</text>
 
   <!-- Divider -->
   <line x1="0" y1="62" x2="280" y2="62" stroke="#3f3f3f" stroke-width="1"/>
 
-  <!-- SECTION: Excel file ------------------------------------------------- -->
+  <!-- Excel file section label -->
   <text x="16" y="80" fill="#b0b0b0" font-size="10" font-weight="600" letter-spacing="0.5">EXCEL FILE</text>
 
   <!-- File path input -->
   <rect x="16" y="87" width="196" height="28" fill="#3a3a3a" stroke="#555" stroke-width="1" rx="4"/>
-  <text x="26" y="105" fill="#606060" font-size="11" font-style="italic">No file selected…</text>
+  <text x="26" y="105" fill="#606060" font-size="11" font-style="italic">No file selected...</text>
 
   <!-- Browse button -->
   <rect x="220" y="87" width="46" height="28" fill="#4a4a4a" stroke="#606060" stroke-width="1" rx="4"/>
   <text x="243" y="105" fill="#d0d0d0" font-size="11" text-anchor="middle">Browse</text>
 
-  <!-- SECTION: Sheet + Cell ----------------------------------------------- -->
-  <text x="16" y="136" fill="#b0b0b0" font-size="10" font-weight="600" letter-spacing="0.5">SHEET</text>
+  <!-- Sheet + Cell section labels -->
+  <text x="16"  y="136" fill="#b0b0b0" font-size="10" font-weight="600" letter-spacing="0.5">SHEET</text>
   <text x="162" y="136" fill="#b0b0b0" font-size="10" font-weight="600" letter-spacing="0.5">CELL</text>
 
-  <!-- Sheet dropdown (disabled until file selected) -->
+  <!-- Sheet dropdown (disabled) -->
   <rect x="16" y="143" width="134" height="28" fill="#3a3a3a" stroke="#555" stroke-width="1" rx="4"/>
-  <text x="26" y="161" fill="#606060" font-size="11">—</text>
-  <text x="138" y="161" fill="#606060" font-size="10">▾</text>
+  <text x="26" y="161" fill="#606060" font-size="11">-</text>
+  <text x="138" y="161" fill="#606060" font-size="10">v</text>
 
-  <!-- Cell input -->
+  <!-- Cell input (disabled) -->
   <rect x="162" y="143" width="102" height="28" fill="#3a3a3a" stroke="#555" stroke-width="1" rx="4"/>
-  <text x="172" y="161" fill="#606060" font-size="11">—</text>
+  <text x="172" y="161" fill="#606060" font-size="11">-</text>
 
-  <!-- SECTION: Link button ------------------------------------------------ -->
-  <!-- Divider -->
+  <!-- Divider before button -->
   <line x1="0" y1="190" x2="280" y2="190" stroke="#3f3f3f" stroke-width="1"/>
 
-  <!-- Link button (disabled state because no file is chosen) -->
+  <!-- Link button (disabled) -->
   <rect x="16" y="200" width="248" height="36" fill="#3a3a3a" stroke="#505050" stroke-width="1" rx="5"/>
   <text x="140" y="222" fill="#606060" font-size="12" font-weight="600" text-anchor="middle">Link Frame</text>
 
-  <!-- Callout arrows + hints -------------------------------------------- -->
-  <!-- Arrow pointing to Browse button -->
-  <line x1="244" y1="240" x2="244" y2="120" stroke="#0078d4" stroke-width="1.5" marker-end="url(#tip)" stroke-dasharray="4,3"/>
-  <defs>
-    <marker id="tip" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-      <polygon points="0 0, 8 3, 0 6" fill="#0078d4"/>
-    </marker>
-  </defs>
+  <!-- Arrow from button area pointing to Browse -->
+  <line x1="244" y1="238" x2="244" y2="122" stroke="#0078d4" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="238,122 250,122 244,112" fill="#0078d4"/>
 
-  <!-- Step annotations -->
+  <!-- How-to callout box -->
   <rect x="12" y="248" width="256" height="70" fill="#1e2a38" rx="5"/>
   <text x="24" y="264" fill="#58a6ff" font-size="10" font-weight="600">HOW TO LINK</text>
-  <text x="24" y="280" fill="#8a9bae" font-size="10">1.  Browse → select your .xlsx file</text>
-  <text x="24" y="295" fill="#8a9bae" font-size="10">2.  Pick the sheet and type a cell (e.g. B3)</text>
-  <text x="24" y="310" fill="#8a9bae" font-size="10">3.  Click Link Frame</text>
+  <text x="24" y="280" fill="#8a9bae" font-size="10">1. Browse - select your .xlsx file</text>
+  <text x="24" y="295" fill="#8a9bae" font-size="10">2. Pick sheet, type a cell (e.g. B3)</text>
+  <text x="24" y="310" fill="#8a9bae" font-size="10">3. Click Link Frame</text>
 </svg>
