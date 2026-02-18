@@ -5,4 +5,6 @@
  * Re-exports all public API from the excel-reader module.
  */
 
-export { readCell, getSheetNames, validateFile } from "./excel-reader.js";
+"use strict";
+
+module.exports = require("./excel-reader.js");

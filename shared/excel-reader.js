@@ -6,8 +6,11 @@
  * the returned value is the display string (e.g. "$1,234.56").
  */
 
-import { readFile, utils } from "xlsx";
-import { existsSync } from "fs";
+"use strict";
+
+const XLSX = require("xlsx");
+const { readFile, utils } = XLSX;
+const { existsSync } = require("fs");
 
 /**
  * Read a single cell value from a local xlsx file, formatted as a string.
@@ -18,7 +21,7 @@ import { existsSync } from "fs";
  * @returns {Promise<{ value: string, rawValue: any, formatString: string }>}
  * @throws {Error} if file not found, sheet not found, or cell empty
  */
-export async function readCell(filePath, sheetName, cellAddress) {
+async function readCell(filePath, sheetName, cellAddress) {
   if (!existsSync(filePath)) {
     throw new Error(`File not found: ${filePath}`);
   }
@@ -58,7 +61,7 @@ export async function readCell(filePath, sheetName, cellAddress) {
  * @param {string} filePath
  * @returns {Promise<string[]>}
  */
-export async function getSheetNames(filePath) {
+async function getSheetNames(filePath) {
   if (!existsSync(filePath)) {
     throw new Error(`File not found: ${filePath}`);
   }
@@ -79,7 +82,7 @@ export async function getSheetNames(filePath) {
  * @param {string} filePath
  * @returns {Promise<boolean>}
  */
-export async function validateFile(filePath) {
+async function validateFile(filePath) {
   if (!existsSync(filePath)) {
     return false;
   }
@@ -116,3 +119,5 @@ function resolveMerge(sheet, addr) {
   }
   return addr;
 }
+
+module.exports = { readCell, getSheetNames, validateFile };

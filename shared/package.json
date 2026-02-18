@@ -2,7 +2,6 @@
   "name": "@datalink/shared",
   "version": "1.0.0",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "test": "node test/excel-reader.test.js"
   },

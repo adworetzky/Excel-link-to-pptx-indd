@@ -36,7 +36,7 @@ module.exports = {
       fs: false,
       os: false,
       crypto: false,
-      buffer: require.resolve("buffer/"),
+      buffer: false,
       stream: false,
     },
   },
