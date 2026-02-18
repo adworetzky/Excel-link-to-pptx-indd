@@ -8,6 +8,7 @@
     "powerpoint-addin"
   ],
   "scripts": {
+    "setup": "node setup.js",
     "build:indesign": "npm run build --workspace=indesign-plugin",
     "build:powerpoint": "npm run build --workspace=powerpoint-addin",
     "build": "npm run build:indesign && npm run build:powerpoint",

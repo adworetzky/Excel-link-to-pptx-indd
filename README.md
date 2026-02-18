@@ -22,43 +22,28 @@ DataLink links text frames in Adobe InDesign and text shapes in Microsoft PowerP
 
 ## Installation
 
-### Windows — one command
+### One command — all platforms
 
-Open PowerShell **in the project folder** and run:
+Make sure [Node.js 16+](https://nodejs.org) is installed, then run **one of the following** from inside the project folder:
 
-```powershell
-powershell -ExecutionPolicy Bypass -File install.ps1
-```
+| Platform | Command |
+|---|---|
+| Any terminal (Windows / macOS / Linux) | `node setup.js` |
+| npm shorthand | `npm run setup` |
+| Windows — double-click | `install.bat` |
 
-The installer will:
+That's it. No admin rights, no extra tools.
 
-1. Verify Node.js is installed
-2. Run `npm install` and build both plugins
-3. Copy `manifest.xml` to `%APPDATA%\Microsoft\Office\16\Wef\DataLink.xml` (the Office sideload folder)
-4. Add a silent launcher to your **Windows Startup folder** — the server starts automatically at every login
-5. Create a **"Start DataLink Server"** shortcut on your Desktop for manual starts
-6. Start the server immediately on `http://localhost:3000`
-7. Print the InDesign plugin load path
+**What it does:**
 
-No admin rights required at any step.
+1. Verifies Node.js 16+
+2. Runs `npm install` and builds both plugins
+3. **Windows:** copies the manifest to `%APPDATA%\Microsoft\Office\16\Wef\` and adds a silent server launcher to the Startup folder (so the server runs automatically at every login) plus a Desktop shortcut
+4. **macOS:** installs a launchd user agent (`~/Library/LaunchAgents/com.datalink.server.plist`) — auto-starts the server at every login
+5. Starts the local server immediately on `http://localhost:3000`
+6. Prints the exact path to select when loading the InDesign plugin
 
----
-
-### macOS — one command
-
-```bash
-bash install.sh
-```
-
-The installer will:
-
-1. Verify Node.js is installed
-2. Run `npm install` and build both plugins
-3. Install a **launchd user agent** (`~/Library/LaunchAgents/com.datalink.server.plist`) — the server starts automatically at every login
-4. Start the server immediately on `http://localhost:3000`
-5. Print the InDesign plugin load path
-
-> **Note:** The PowerPoint add-in requires Windows desktop. On macOS, only the InDesign plugin is usable.
+> **PowerPoint is Windows desktop only.** The add-in uses `DesktopRuntime` and cannot run in PowerPoint for Mac or PowerPoint Online. On macOS, only the InDesign plugin is usable.
 
 ---
 
