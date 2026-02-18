@@ -9,41 +9,100 @@ DataLink links text frames in Adobe InDesign and text shapes in Microsoft PowerP
 - Number formatting from Excel is preserved (currency, percentages, dates)
 - Highlight mode shows all linked items with a semi-transparent overlay
 - All link metadata stored invisibly inside the document (no external files)
+- Broken-link detection with one-click repoint when an Excel file is moved
 
 ## Requirements
 
+- Node.js 16+ (for build and local server) — [nodejs.org](https://nodejs.org)
 - Adobe InDesign CC 2021+ (UXP API 6.0+)
-- Microsoft PowerPoint (desktop, Windows) with Office JS 1.3+
-- Node.js 16+ for building
+- Microsoft PowerPoint desktop (Windows, Microsoft 365)
 
-## Build
+---
 
-```bash
-# Install all dependencies
-npm install
+## Quick Setup
 
-# Build InDesign plugin
-cd indesign-plugin && npm run build
+### Windows (one command)
 
-# Build PowerPoint add-in
-cd powerpoint-addin && npm run build
+Open PowerShell in the project folder and run:
 
-# Run shared module tests
-cd shared && node test/excel-reader.test.js
+```powershell
+powershell -ExecutionPolicy Bypass -File install.ps1
 ```
 
-## Installation
+This will:
+1. Check that Node.js is installed
+2. Install npm dependencies and build both plugins
+3. Copy the PowerPoint manifest to the Office sideload folder
+4. Add the DataLink server to your Windows **Startup** folder so it runs automatically at every login
+5. Start the server immediately and print InDesign load instructions
 
-### InDesign Plugin
+No admin rights required.
+
+### macOS (one command)
+
+```bash
+bash install.sh
+```
+
+This will build both plugins and install a **launchd agent** that starts the server automatically at login. Follow the printed instructions to load the InDesign plugin.
+
+---
+
+## After Installation
+
+### InDesign
+
+Load the plugin once via UXP Developer Tools — this is a one-time step:
 
 1. Open InDesign CC 2021+
-2. Plugins → UXP Developer Tools → Load Plugin
-3. Point to `indesign-plugin/manifest.json`
+2. **Plugins → UXP Developer Tools → Load Plugin**
+3. Navigate to `indesign-plugin/manifest.json`
+4. The **DataLink** panel appears in your panels list
 
-### PowerPoint Add-in (Windows)
+The plugin reloads automatically on subsequent launches.
 
-1. Copy `powerpoint-addin/manifest.xml` to `%APPDATA%\Microsoft\Office\16\Wef\`
-2. Open PowerPoint → Insert → My Add-ins → DataLink
+### PowerPoint (Windows)
+
+The add-in server must be running at `http://localhost:3000` before opening PowerPoint.
+
+- **Automatic:** The server starts at Windows login via the Startup script installed by `install.ps1`
+- **Manual:** Double-click **"Start DataLink Server"** on your Desktop, or run `node powerpoint-addin/serve.js`
+
+Then in PowerPoint: **Insert → My Add-ins → DataLink**
+
+---
+
+## Manual Build (developers)
+
+```bash
+# Install dependencies
+npm install
+
+# Build InDesign plugin  → indesign-plugin/dist/bundle.js
+npm run build:indesign
+
+# Build PowerPoint add-in → powerpoint-addin/dist/taskpane.bundle.js
+npm run build:powerpoint
+
+# Run shared module tests (14 assertions)
+npm test
+
+# Start the PowerPoint server manually
+node powerpoint-addin/serve.js
+```
+
+---
+
+## Uninstall
+
+**PowerPoint add-in:**
+- Delete `%APPDATA%\Microsoft\Office\16\Wef\DataLink.xml`
+- Delete `%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\DataLink-Server.vbs`
+
+**InDesign plugin:**
+- Plugins → UXP Developer Tools → unload the DataLink plugin
+
+---
 
 ## Project Structure
 
