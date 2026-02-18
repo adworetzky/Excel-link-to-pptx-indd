@@ -197,8 +197,14 @@ export default function App() {
       if (!file) return;
       const newPath = file.path || file.name;
       if (!currentLink) return;
+      // Rewrite stored paths for every link that used the old file
       await PowerPoint.run(async (context) => {
         await repointExcelFile(context, currentLink.excelFile, newPath);
+      });
+      // Force-fetch the new value immediately so the shape is up to date
+      const updatedLink = { ...currentLink, excelFile: newPath, _fileBroken: false };
+      await PowerPoint.run(async (context) => {
+        await updateLinkedItem(context, updatedLink, true);
       });
       await refreshSelection();
     };

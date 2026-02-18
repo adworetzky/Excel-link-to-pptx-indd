@@ -18,7 +18,7 @@ import { createLink, readLink, removeLink, setAutoUpdate } from "./linker.js";
 import { updateLinkedItem, updateAllAutoLinks, repointExcelFile } from "./updater.js";
 import { getAllLinkedFrames, readLinkFromFrame } from "./storage.js";
 import { setHighlightActive } from "./highlight.js";
-import { readCell, getSheetNames } from "@datalink/shared";
+import { readCell, getSheetNames, validateFile } from "@datalink/shared";
 
 const uxp = typeof require !== "undefined" ? require("uxp") : null;
 
@@ -59,7 +59,7 @@ export default function App() {
     setLinkedCount(all.length);
   }, []);
 
-  const refreshSelection = useCallback(() => {
+  const refreshSelection = useCallback(async () => {
     const appObj = getApp();
     if (!appObj || !appObj.activeDocument) {
       setPanelState(PANEL_STATE.NO_SELECTION);
@@ -82,7 +82,8 @@ export default function App() {
       setCurrentFrame(frame);
       const link = readLinkFromFrame(frame);
       if (link) {
-        setCurrentLink(link);
+        const fileOk = await validateFile(link.excelFile);
+        setCurrentLink({ ...link, _fileBroken: !fileOk });
         setPanelState(PANEL_STATE.LINKED);
       } else {
         setCurrentLink(null);
@@ -98,7 +99,7 @@ export default function App() {
     const appObj = getApp();
     if (!appObj) return;
     await updateAllAutoLinks(appObj);
-    refreshSelection();
+    await refreshSelection();
   }, [refreshSelection]);
 
   useEffect(() => {
@@ -174,7 +175,11 @@ export default function App() {
       });
       if (!result) return;
       const newPath = result.nativePath || result.name;
+      // Rewrite stored paths for every link that used the old file
       repointExcelFile(appObj, currentLink.excelFile, newPath);
+      // Force-fetch the new value immediately so the frame is up to date
+      const updatedLink = { ...currentLink, excelFile: newPath, _fileBroken: false };
+      await updateLinkedItem(appObj, updatedLink, true);
       refreshSelection();
     } catch {}
   }
