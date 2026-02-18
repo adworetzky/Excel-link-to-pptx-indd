@@ -9,82 +9,110 @@ DataLink links text frames in Adobe InDesign and text shapes in Microsoft PowerP
 - Number formatting from Excel is preserved (currency, percentages, dates)
 - Highlight mode shows all linked items with a semi-transparent overlay
 - All link metadata stored invisibly inside the document (no external files)
-- Broken-link detection with one-click repoint when an Excel file is moved
 
 ## Requirements
 
-- Node.js 16+ (for build and local server) — [nodejs.org](https://nodejs.org)
-- Adobe InDesign CC 2021+ (UXP API 6.0+)
-- Microsoft PowerPoint desktop (Windows, Microsoft 365)
+| Requirement | Details |
+|---|---|
+| **Node.js 16+** | Build tool and local server — [nodejs.org](https://nodejs.org) |
+| **Adobe InDesign CC 2021+** | UXP API 6.0+ required |
+| **Microsoft PowerPoint** | **Windows desktop only** (Microsoft 365, Office 2019+). The add-in uses `DesktopRuntime` and cannot run in PowerPoint for Mac or PowerPoint Online. |
 
 ---
 
-## Quick Setup
+## Installation
 
-### Windows (one command)
+### Windows — one command
 
-Open PowerShell in the project folder and run:
+Open PowerShell **in the project folder** and run:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File install.ps1
 ```
 
-This will:
-1. Check that Node.js is installed
-2. Install npm dependencies and build both plugins
-3. Copy the PowerPoint manifest to the Office sideload folder
-4. Add the DataLink server to your Windows **Startup** folder so it runs automatically at every login
-5. Start the server immediately and print InDesign load instructions
+The installer will:
 
-No admin rights required.
+1. Verify Node.js is installed
+2. Run `npm install` and build both plugins
+3. Copy `manifest.xml` to `%APPDATA%\Microsoft\Office\16\Wef\DataLink.xml` (the Office sideload folder)
+4. Add a silent launcher to your **Windows Startup folder** — the server starts automatically at every login
+5. Create a **"Start DataLink Server"** shortcut on your Desktop for manual starts
+6. Start the server immediately on `http://localhost:3000`
+7. Print the InDesign plugin load path
 
-### macOS (one command)
+No admin rights required at any step.
+
+---
+
+### macOS — one command
 
 ```bash
 bash install.sh
 ```
 
-This will build both plugins and install a **launchd agent** that starts the server automatically at login. Follow the printed instructions to load the InDesign plugin.
+The installer will:
+
+1. Verify Node.js is installed
+2. Run `npm install` and build both plugins
+3. Install a **launchd user agent** (`~/Library/LaunchAgents/com.datalink.server.plist`) — the server starts automatically at every login
+4. Start the server immediately on `http://localhost:3000`
+5. Print the InDesign plugin load path
+
+> **Note:** The PowerPoint add-in requires Windows desktop. On macOS, only the InDesign plugin is usable.
 
 ---
 
-## After Installation
+## First Use After Installation
 
-### InDesign
+### InDesign (Windows and macOS)
 
-Load the plugin once via UXP Developer Tools — this is a one-time step:
+Loading the plugin via UXP Developer Tools is a **one-time manual step**:
 
 1. Open InDesign CC 2021+
-2. **Plugins → UXP Developer Tools → Load Plugin**
-3. Navigate to `indesign-plugin/manifest.json`
-4. The **DataLink** panel appears in your panels list
+2. Go to **Plugins → UXP Developer Tools**
+3. Click **Load Plugin**
+4. Navigate to and select `indesign-plugin/manifest.json`
+5. The **DataLink** panel will appear in your panels list
 
-The plugin reloads automatically on subsequent launches.
+> To use the plugin in future sessions, repeat steps 2–4, or keep UXP Developer Tools open. The plugin does not auto-load between application relaunches when loaded this way.
 
-### PowerPoint (Windows)
+### PowerPoint (Windows only)
 
-The add-in server must be running at `http://localhost:3000` before opening PowerPoint.
+The DataLink server (`http://localhost:3000`) must be running before you open PowerPoint.
 
-- **Automatic:** The server starts at Windows login via the Startup script installed by `install.ps1`
-- **Manual:** Double-click **"Start DataLink Server"** on your Desktop, or run `node powerpoint-addin/serve.js`
+- **Automatic (after running `install.ps1`):** The server starts silently at every Windows login.
+- **Manual start:** Double-click **"Start DataLink Server"** on your Desktop, or run:
+  ```
+  node powerpoint-addin/serve.js
+  ```
+- **If port 3000 is in use by another app:**
+  ```
+  PORT=3001 node powerpoint-addin/serve.js
+  ```
+  Then edit `manifest.xml` to replace `localhost:3000` with `localhost:3001` before re-copying it.
 
-Then in PowerPoint: **Insert → My Add-ins → DataLink**
+To open the add-in in PowerPoint: **Insert → My Add-ins → DataLink**
 
 ---
 
-## Manual Build (developers)
+## Developer Build Reference
 
 ```bash
-# Install dependencies
+# Install all dependencies (run once, or after pulling changes)
 npm install
 
-# Build InDesign plugin  → indesign-plugin/dist/bundle.js
-npm run build:indesign
+# Build both plugins
+npm run build
 
-# Build PowerPoint add-in → powerpoint-addin/dist/taskpane.bundle.js
-npm run build:powerpoint
+# Build individually
+npm run build:indesign    # → indesign-plugin/dist/bundle.js
+npm run build:powerpoint  # → powerpoint-addin/dist/taskpane.bundle.js
 
-# Run shared module tests (14 assertions)
+# Watch mode (rebuilds on file save)
+npm run dev --workspace=indesign-plugin
+npm run dev --workspace=powerpoint-addin
+
+# Run shared module tests (14 assertions, no framework)
 npm test
 
 # Start the PowerPoint server manually
@@ -95,15 +123,26 @@ node powerpoint-addin/serve.js
 
 ## Uninstall
 
-**PowerPoint add-in:**
-- Delete `%APPDATA%\Microsoft\Office\16\Wef\DataLink.xml`
-- Delete `%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\DataLink-Server.vbs`
+**Windows:**
 
-**InDesign plugin:**
-- Plugins → UXP Developer Tools → unload the DataLink plugin
+| What | How |
+|---|---|
+| Stop server auto-start | Delete `%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\DataLink-Server.vbs` |
+| Remove PowerPoint add-in | Delete `%APPDATA%\Microsoft\Office\16\Wef\DataLink.xml` |
+| Remove Desktop shortcut | Delete `%USERPROFILE%\Desktop\Start DataLink Server.lnk` |
+| Remove InDesign plugin | Plugins → UXP Developer Tools → unload DataLink |
+
+**macOS:**
+
+```bash
+launchctl unload ~/Library/LaunchAgents/com.datalink.server.plist
+rm ~/Library/LaunchAgents/com.datalink.server.plist
+```
+
+Then unload the InDesign plugin from Plugins → UXP Developer Tools.
 
 ---
 
 ## Project Structure
 
-See `CLAUDE.md` for the full project specification and architecture.
+See `CLAUDE.md` for the full technical specification and architecture.
