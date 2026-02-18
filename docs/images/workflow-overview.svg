@@ -1,0 +1,123 @@
+<svg width="720" height="210" viewBox="0 0 720 210" xmlns="http://www.w3.org/2000/svg"
+     font-family="system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+
+  <!-- Background -->
+  <rect width="720" height="210" fill="#f8f9fa" rx="10"/>
+
+  <!-- ── Excel zone ──────────────────────────────────────────────────── -->
+  <rect x="20" y="20" width="190" height="170" fill="#fff" stroke="#d0d7de" stroke-width="1.5" rx="8"/>
+
+  <!-- Spreadsheet header row -->
+  <rect x="20" y="20" width="190" height="28" fill="#217346" rx="8"/>
+  <rect x="20" y="40" width="190" height="8" fill="#217346"/>
+  <text x="115" y="38" fill="#fff" font-size="12" font-weight="600" text-anchor="middle">data.xlsx</text>
+
+  <!-- Column labels -->
+  <text x="60"  y="66" fill="#6e7781" font-size="10" text-anchor="middle" font-weight="600">A</text>
+  <text x="120" y="66" fill="#6e7781" font-size="10" text-anchor="middle" font-weight="600">B</text>
+  <text x="185" y="66" fill="#6e7781" font-size="10" text-anchor="middle" font-weight="600">C</text>
+
+  <!-- Grid lines -->
+  <line x1="20" y1="70" x2="210" y2="70" stroke="#d0d7de" stroke-width="1"/>
+  <line x1="20" y1="90" x2="210" y2="90" stroke="#d0d7de" stroke-width="1"/>
+  <line x1="20" y1="110" x2="210" y2="110" stroke="#d0d7de" stroke-width="1"/>
+  <line x1="20" y1="130" x2="210" y2="130" stroke="#d0d7de" stroke-width="1"/>
+  <line x1="20" y1="150" x2="210" y2="150" stroke="#d0d7de" stroke-width="1"/>
+  <line x1="20" y1="170" x2="210" y2="170" stroke="#d0d7de" stroke-width="1"/>
+  <line x1="90" y1="56" x2="90" y2="190" stroke="#d0d7de" stroke-width="1"/>
+  <line x1="155" y1="56" x2="155" y2="190" stroke="#d0d7de" stroke-width="1"/>
+
+  <!-- Row labels -->
+  <text x="35" y="84"  fill="#6e7781" font-size="10" text-anchor="middle">1</text>
+  <text x="35" y="104" fill="#6e7781" font-size="10" text-anchor="middle">2</text>
+  <text x="35" y="124" fill="#6e7781" font-size="10" text-anchor="middle">3</text>
+  <text x="35" y="144" fill="#6e7781" font-size="10" text-anchor="middle">4</text>
+  <text x="35" y="164" fill="#6e7781" font-size="10" text-anchor="middle">5</text>
+  <text x="35" y="184" fill="#6e7781" font-size="10" text-anchor="middle">6</text>
+
+  <!-- Cell data -->
+  <text x="65"  y="84"  fill="#1f2328" font-size="10">Revenue</text>
+  <text x="65"  y="104" fill="#1f2328" font-size="10">Expenses</text>
+  <text x="65"  y="124" fill="#1f2328" font-size="10">Profit</text>
+  <text x="65"  y="144" fill="#1f2328" font-size="10">Units</text>
+  <text x="65"  y="164" fill="#1f2328" font-size="10">Region</text>
+  <text x="65"  y="184" fill="#1f2328" font-size="10">Date</text>
+
+  <text x="158" y="84"  fill="#1f2328" font-size="10">$84,200</text>
+  <text x="158" y="104" fill="#1f2328" font-size="10">$31,450</text>
+  <text x="158" y="164" fill="#1f2328" font-size="10">West</text>
+
+  <!-- Highlighted cell B3 (Profit) -->
+  <rect x="155" y="111" width="55" height="19" fill="#e6f4ea" stroke="#217346" stroke-width="1.5"/>
+  <text x="158" y="124" fill="#217346" font-size="10" font-weight="700">$52,750</text>
+
+  <!-- Cell reference callout -->
+  <text x="115" y="200" fill="#217346" font-size="10" font-weight="600" text-anchor="middle">Sheet1 · B3</text>
+
+  <!-- ── Arrow 1 ──────────────────────────────────────────────────────── -->
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#0078d4"/>
+    </marker>
+  </defs>
+  <line x1="218" y1="105" x2="268" y2="105" stroke="#0078d4" stroke-width="2.5" marker-end="url(#arr)" stroke-dasharray="5,3"/>
+
+  <!-- ── DataLink panel zone ─────────────────────────────────────────── -->
+  <rect x="276" y="20" width="170" height="170" fill="#2d2d2d" rx="8"/>
+
+  <!-- Panel titlebar -->
+  <rect x="276" y="20" width="170" height="30" fill="#1a1a1a" rx="8"/>
+  <rect x="276" y="42" width="170" height="8" fill="#1a1a1a"/>
+  <circle cx="294" cy="35" r="5" fill="#ff5f57"/>
+  <circle cx="310" cy="35" r="5" fill="#febc2e"/>
+  <circle cx="326" cy="35" r="5" fill="#28c840"/>
+  <text x="361" y="39" fill="#e8e8e8" font-size="11" font-weight="600" text-anchor="middle">DataLink</text>
+
+  <!-- Linked badge -->
+  <rect x="290" y="60" width="142" height="20" fill="#107c10" rx="4"/>
+  <text x="361" y="74" fill="#fff" font-size="10" font-weight="600" text-anchor="middle">✓  Linked</text>
+
+  <!-- Link metadata -->
+  <text x="290" y="100" fill="#8a8a8a" font-size="9">FILE</text>
+  <text x="290" y="113" fill="#e8e8e8" font-size="10">data.xlsx</text>
+
+  <text x="290" y="130" fill="#8a8a8a" font-size="9">SHEET · CELL</text>
+  <text x="290" y="143" fill="#e8e8e8" font-size="10">Sheet1 · B3</text>
+
+  <text x="290" y="160" fill="#8a8a8a" font-size="9">CURRENT VALUE</text>
+  <text x="290" y="173" fill="#e8e8e8" font-size="11" font-weight="700">$52,750</text>
+
+  <!-- Update Now button -->
+  <rect x="290" y="180" width="136" height="22" fill="#0078d4" rx="4"/>
+  <text x="358" y="195" fill="#fff" font-size="10" font-weight="600" text-anchor="middle">Update Now</text>
+
+  <!-- Panel label -->
+  <text x="361" y="207" fill="#555" font-size="10" text-anchor="middle">Task pane panel</text>
+
+  <!-- ── Arrow 2 ──────────────────────────────────────────────────────── -->
+  <line x1="454" y1="105" x2="504" y2="105" stroke="#0078d4" stroke-width="2.5" marker-end="url(#arr)" stroke-dasharray="5,3"/>
+
+  <!-- ── Applications zone ───────────────────────────────────────────── -->
+  <!-- InDesign frame mock -->
+  <rect x="512" y="20" width="190" height="80" fill="#fff" stroke="#d0d7de" stroke-width="1.5" rx="8"/>
+  <rect x="512" y="20" width="190" height="24" fill="#310062" rx="8"/>
+  <rect x="512" y="36" width="190" height="8" fill="#310062"/>
+  <text x="607" y="36" fill="#fff" font-size="10" font-weight="500" text-anchor="middle">InDesign — annual-report.indd</text>
+
+  <!-- Text frame -->
+  <rect x="530" y="54" width="154" height="34" fill="#f3f0ff" stroke="#7c3aed" stroke-width="1" stroke-dasharray="3,2" rx="3"/>
+  <text x="607" y="74" fill="#1f2328" font-size="13" font-weight="700" text-anchor="middle">$52,750</text>
+  <text x="607" y="87" fill="#7c3aed" font-size="8" text-anchor="middle">linked text frame</text>
+
+  <!-- PowerPoint slide mock -->
+  <rect x="512" y="118" width="190" height="72" fill="#fff" stroke="#d0d7de" stroke-width="1.5" rx="8"/>
+  <rect x="512" y="118" width="190" height="22" fill="#c43e1c" rx="8"/>
+  <rect x="512" y="132" width="190" height="8" fill="#c43e1c"/>
+  <text x="607" y="133" fill="#fff" font-size="10" font-weight="500" text-anchor="middle">PowerPoint — deck.pptx</text>
+
+  <!-- Text shape -->
+  <rect x="530" y="150" width="154" height="28" fill="#fff3ee" stroke="#c43e1c" stroke-width="1" stroke-dasharray="3,2" rx="3"/>
+  <text x="607" y="168" fill="#1f2328" font-size="13" font-weight="700" text-anchor="middle">$52,750</text>
+
+  <text x="607" y="200" fill="#555" font-size="10" text-anchor="middle">linked text shapes</text>
+</svg>

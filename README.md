@@ -2,6 +2,8 @@
 
 DataLink links text frames in Adobe InDesign and text shapes in Microsoft PowerPoint to individual cells in a local Excel (`.xlsx`) file. When the Excel data changes, the linked text updates automatically — with no visible tokens, underlines, or formatting changes in the documents.
 
+![Workflow overview — Excel cell linked to InDesign and PowerPoint text](docs/images/workflow-overview.svg)
+
 ## Features
 
 - Link InDesign text frames or PowerPoint text shapes to Excel cells
@@ -48,6 +50,23 @@ That's it. No admin rights, no extra tools.
 ---
 
 ## First Use After Installation
+
+### Panel UI
+
+<table>
+<tr>
+<td align="center"><strong>Select a frame → choose a cell → click Link</strong></td>
+<td align="center"><strong>Frame is linked — update, repoint, or remove</strong></td>
+</tr>
+<tr>
+<td><img src="docs/images/panel-not-linked.svg" width="260" alt="DataLink panel — not linked state"/></td>
+<td><img src="docs/images/panel-linked.svg" width="260" alt="DataLink panel — linked state"/></td>
+</tr>
+</table>
+
+The same panel appears in both InDesign and PowerPoint.
+
+---
 
 ### InDesign (Windows and macOS)
 
