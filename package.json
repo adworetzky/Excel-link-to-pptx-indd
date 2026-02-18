@@ -1,0 +1,16 @@
+{
+  "name": "datalink",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "shared",
+    "indesign-plugin",
+    "powerpoint-addin"
+  ],
+  "scripts": {
+    "build:indesign": "npm run build --workspace=indesign-plugin",
+    "build:powerpoint": "npm run build --workspace=powerpoint-addin",
+    "build": "npm run build:indesign && npm run build:powerpoint",
+    "test": "npm run test --workspace=shared"
+  }
+}

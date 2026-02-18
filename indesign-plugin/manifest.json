@@ -1,0 +1,35 @@
+{
+  "id": "com.datalink.indesign",
+  "name": "DataLink",
+  "version": "1.0.0",
+  "manifestVersion": 6,
+  "host": {
+    "app": "ID",
+    "minVersion": "18.0"
+  },
+  "entrypoints": [
+    {
+      "type": "panel",
+      "id": "datalink-panel",
+      "label": {
+        "default": "DataLink"
+      },
+      "minimumSize": { "width": 240, "height": 400 },
+      "preferredSize": { "width": 280, "height": 600 },
+      "maximumSize": { "width": 600, "height": 1200 },
+      "icons": []
+    }
+  ],
+  "main": "index.html",
+  "permissions": {
+    "localFileSystem": "fullAccess",
+    "launchProcess": false,
+    "clipboard": "readAndWrite",
+    "ipc": {
+      "enablePluginCommunication": false
+    },
+    "webAccess": {
+      "domains": []
+    }
+  }
+}
